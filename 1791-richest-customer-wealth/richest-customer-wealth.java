@@ -1,17 +1,15 @@
 class Solution {
     public int maximumWealth(int[][] accounts) {
-        
-        int ans = Integer.MIN_VALUE;
+       int ans = Integer.MIN_VALUE;
         for (int[] ints : accounts) {
             int sum = 0;
             for (int anInt : ints) {
                 sum += anInt;
             }
-           
-            if (sum > ans) {
+            if(sum > ans){
                 ans = sum;
             }
-        }
-        return ans;
+       }
+       return ans;
     }
 }
