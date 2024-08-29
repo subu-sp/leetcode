@@ -4,13 +4,17 @@ class Solution {
             return false;
         }
 
-        char[] cs = s.toCharArray();
-        char[] ct = t.toCharArray();
-
-        Arrays.sort(cs);
-        Arrays.sort(ct);
-        
-        return Arrays.equals(cs, ct);
+        int[] count = new int[26];
+        for(int i=0; i<s.length(); i++){
+            count[s.charAt(i) - 'a']++ ;
+            count[t.charAt(i) - 'a']-- ;
+        }
+        for(int c:count){
+            if(c != 0){
+                return false;
+            }
+        }
+        return true;
 
     }
 
