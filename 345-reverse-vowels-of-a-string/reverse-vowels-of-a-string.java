@@ -21,7 +21,7 @@ class Solution {
             start++;
             end--;
         }
-        return new String(chars);
+        return String.valueOf(chars);
     
     }
 }
