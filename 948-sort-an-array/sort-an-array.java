@@ -1,49 +1,38 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        mergeSortInPlace(nums, 0, nums.length - 1);
-        return nums;
-    }
-
-    // In-place merge sort function
-    static void mergeSortInPlace(int[] arr, int low, int high) {
-        if (low < high) {
-            int mid = (low + high) / 2;
-
-            // Recursively sort the first and second halves
-            mergeSortInPlace(arr, low, mid);
-            mergeSortInPlace(arr, mid + 1, high);
-
-            // Merge the sorted halves
-            mergeInPlace(arr, low, mid, high);
+        if (nums.length <= 1) {
+            return nums;
         }
+
+        int mid = nums.length / 2;
+
+        int[] left = sortArray(Arrays.copyOfRange(nums, 0, mid));
+        int[] right = sortArray(Arrays.copyOfRange(nums, mid, nums.length));
+
+        return merge(left, right);
     }
 
-    // Merge function to combine two sorted halves into the original array
-    static void mergeInPlace(int[] arr, int low, int mid, int high) {
-        int[] temp = new int[high - low + 1];
-        int i = low;
-        int j = mid + 1;
-        int k = 0;
+    private static int[] merge(int[] first, int[] second) {
+        int[] mix = new int[first.length + second.length];
 
-        // Merge the two halves into the temporary array
-        while (i <= mid && j <= high) {
-            if (arr[i] <= arr[j]) {
-                temp[k++] = arr[i++];
+        int i = 0, j = 0, k = 0;
+
+        while (i < first.length && j < second.length) {
+            if (first[i] < second[j]) {
+                mix[k++] = first[i++];
             } else {
-                temp[k++] = arr[j++];
+                mix[k++] = second[j++];
             }
         }
 
-        // Copy remaining elements from the first half (if any)
-        while (i <= mid) {
-            temp[k++] = arr[i++];
+        while (i < first.length) {
+            mix[k++] = first[i++];
         }
 
-        // Copy remaining elements from the second half (if any)
-        while (j <= high) {
-            temp[k++] = arr[j++];
+        while (j < second.length) {
+            mix[k++] = second[j++];
         }
-        System.arraycopy(temp, 0, arr, low, temp.length);
 
+        return mix;
     }
 }
