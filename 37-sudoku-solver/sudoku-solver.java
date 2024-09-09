@@ -1,6 +1,9 @@
 class Solution {
-    public static boolean solveSudoku(char[][] board) 
+    public void solveSudoku(char[][] board) 
     {
+        solve(board);
+    }
+    public static boolean solve(char[][] board) {
     for (int i = 0; i < 9; i++) {
       for (int j = 0; j < 9; j++) {
         if (board[i][j] == '.') {
@@ -9,7 +12,7 @@ class Solution {
             if (isValid(board, i, j, c)) {
               board[i][j] = c;
 
-              if (solveSudoku(board))
+              if (solve(board))
                 return true;
               else
                 board[i][j] = '.';
