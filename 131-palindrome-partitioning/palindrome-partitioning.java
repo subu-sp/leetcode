@@ -11,7 +11,7 @@ class Solution {
             res.add(new ArrayList < > (path));
             return;
         }
-        for (int i = index; i < s.length(); ++i) {
+        for (int i = index; i < s.length(); i++) {
             if (isPalindrome(s, index, i)) {
                 path.add(s.substring(index, i + 1));
                 partitionHelper(i + 1, s, path, res);
