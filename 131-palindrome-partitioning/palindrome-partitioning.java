@@ -10,7 +10,7 @@ public class Solution {
             result.add(new ArrayList<>(path));
             return;
         }
-        for (int end = start + 1; end <= s.length(); end++) {
+        for (int end = start + 1; end <= s.length(); ++end) {
             if (isPalindrome(s, start, end - 1)) {
                 path.add(s.substring(start, end));
                 backtrack(s, end, path, result);
