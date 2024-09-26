@@ -5,10 +5,8 @@ class Solution {
         int right = 0;
 
         while(left < word1.length() && right < word2.length()){
-            sb.append(word1.charAt(left));
-            sb.append(word2.charAt(right));
-            left++;
-            right++;
+            sb.append(word1.charAt(left++));
+            sb.append(word2.charAt(right++));
         }
         if(left < word1.length()){
             sb.append(word1.substring(left));
